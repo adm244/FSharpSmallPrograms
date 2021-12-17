@@ -43,23 +43,23 @@ let calculate (input : string) : Result<decimal, string> =
 
 [<EntryPoint>]
 let main argv =
-    let mutable isRunning = true
+  let mutable isRunning = true
 
-    [
-      "--- Reverse Polish Notation Calculator written in F# ---"
-      "Enter an expression to calculate (e.g. -1 2 + 3 * or 5 1.25 /)"
-      "Type \"q\" or \"quit\" to exit"
-    ]
-    |> List.iter (printfn "%s")
+  [
+    "--- Reverse Polish Notation Calculator written in F# ---"
+    "Enter an expression to calculate (e.g. -1 2 + 3 * or 5 1.25 /)"
+    "Type \"q\" or \"quit\" to exit"
+  ]
+  |> List.iter (printfn "%s")
 
-    while isRunning do
-      printf ": "
-      match Console.ReadLine () with
-      | "q" | "quit" -> isRunning <- false
-      | expression when String.IsNullOrWhiteSpace expression -> ()
-      | expression ->
-        match calculate expression with
-        | Ok number -> printfn "Answer: %M" number
-        | Error msg -> printfn "Error: %s" msg
+  while isRunning do
+    printf ": "
+    match Console.ReadLine () with
+    | "q" | "quit" -> isRunning <- false
+    | expression when String.IsNullOrWhiteSpace expression -> ()
+    | expression ->
+      match calculate expression with
+      | Ok number -> printfn "Answer: %M" number
+      | Error msg -> printfn "Error: %s" msg
 
-    0
+  0
