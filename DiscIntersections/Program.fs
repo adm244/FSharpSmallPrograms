@@ -32,8 +32,8 @@ let align x =
     | head :: tail -> head :: alignMiddle tail
 
   let alignSides min max list =
-    let left : int = fst (List.head list)
-    let right : int = fst (List.last list)
+    let left = fst (List.head list)
+    let right = fst (List.last list)
 
     let prefix = List.init (left - min) (fun x -> (x, 0))
     let postfix = List.init (max - right) (fun x -> (right + x + 1, 0))
@@ -49,6 +49,11 @@ let align x =
 let collect x =
   let (left, right) = x
   List.mapi2 (fun i x y -> i, snd x, snd y) left right
+
+let toList (expr : string) =
+  List.ofArray (expr.Split ',')
+  |> List.map uint
+  |> List.map int
 
 let solve (input : int list) : int =
   let makeTuple acc i x n =
@@ -77,9 +82,28 @@ let solve (input : int list) : int =
 
 [<EntryPoint>]
 let main argv =
-  let a = [1;5;2;1;4;0]
+  let mutable isRunning = true
 
-  solve a
-  |> printfn "%A"
+  [
+    "--- NumberOfDiscIntersections solution written in F# ---"
+    "Enter a list of disc radiuses (e.g. 1,5,2,1,4,0)"
+    "Type \"q\" or \"quit\" to exit"
+  ]
+  |> List.iter (printfn "%s")
+
+  while isRunning do
+    printf ": "
+    match Console.ReadLine () with
+    | "q" | "quit" -> isRunning <- false
+    | expression when String.IsNullOrWhiteSpace expression -> ()
+    | expression ->
+      try
+        expression
+        |> toList
+        |> solve
+        |> printfn "Answer: %A"
+      with
+      | :? FormatException -> printfn "Error: Invalid input given"
+      | :? OverflowException -> printfn "Error: Number is too big or too small"
 
   0
