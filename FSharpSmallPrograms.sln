@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "RPNCalc", "RPNCalc\RPNCalc.fsproj", "{1CCBBC63-364B-4240-B313-7146FFBB5E54}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DiscIntersections", "..\DiscIntersections\DiscIntersections.fsproj", "{378F3AC1-4AEB-4E26-BA3E-D506CCA8274E}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DiscIntersections", "DiscIntersections\DiscIntersections.fsproj", "{378F3AC1-4AEB-4E26-BA3E-D506CCA8274E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
